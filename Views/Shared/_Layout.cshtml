@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>سامانه ثبت درخواست بیمه  </title>
+	@*@Styles.Render("~/Content/css")
+		@Scripts.Render("~/bundles/modernizr")*@
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FreeHTML5.co" />
+
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content="" />
+	<meta property="og:image" content="" />
+	<meta property="og:url" content="" />
+	<meta property="og:site_name" content="" />
+	<meta property="og:description" content="" />
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="~/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="~/css/icomoon.css">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="~/css/themify-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="~/css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="~/css/magnific-popup.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="~/css/bootstrap-datepicker.min.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="~/css/style.css">
+
+
+	<!-- Modernizr JS -->
+	<script src="~/js/modernizr-2.6.2.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		modal-body {
+			margin: 0 auto;
+			padding: 0 20px;
+		}
+
+		.container {
+			border: 2px solid #dedede;
+			background-color: #f1f1f1;
+			border-radius: 5px;
+			padding: 10px;
+			margin: 10px 0;
+			width: 80%;
+			float: right;
+		}
+
+		.darker {
+			border: 2px solid #dedede;
+			background-color: #4cff00;
+			border-radius: 5px;
+			padding: 10px;
+			margin: 10px 0;
+			width: 80%
+		}
+
+		.container::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+
+			<div class="row">
+				@*<div class="col-sm-4 col-xs-12">
+						<div id="gtco-logo"><a href="index.html">Traveler <em>.</em></a></div>
+					</div>*@
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						@*<li><a href="destination.html">Destination</a></li>
+							<li class="has-dropdown">
+								<a href="#">Travel</a>
+								<ul class="dropdown">
+									<li><a href="#">Europe</a></li>
+									<li><a href="#">Asia</a></li>
+									<li><a href="#">America</a></li>
+									<li><a href="#">Canada</a></li>
+								</ul>
+							</li>*@
+
+						@if (!User.Identity.IsAuthenticated)
+						{
+							<li style="font-family:Tahoma,'B Yekan';position:fixed;right:5px;"><a href="../Account/Login">ورود به سامانه </a></li>
+						}
+						@*<li style="font-family:Tahoma,'B Yekan';position:fixed;right:100px;"><a >ورود</a></li>*@
+					</ul>
+				</div>
+			</div>
+			@if (User.Identity.IsAuthenticated)
+			{
+				<a style="font-family:Tahoma,'B Yekan';position:fixed;right:220px;">  خوش آمدید : @User.Identity.Name</a>
+				<a class="fa fa-sign-out" style="font-family:Tahoma,'B Yekan';position:fixed;right:20px;" href="../Account/LogOff">خروج</a>
+				<a class="fa fa-ticket" style="font-family:Tahoma,'B Yekan';position:fixed;right:90px;cursor:pointer" onclick="GetMessages();">گفتگوها</a>
+				@*<a class="fa fa-ticket" style="font-family:Tahoma,'B Yekan';position:fixed;right:500px;" href="#">گفتگوها</a>*@
+			}
+		</div>
+	</nav>
+	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(/Content/Slider/insurance-780x405.jpg);height:750px">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-left">
+
+
+					<div class="row row-mt-15em">
+						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h1 style="font-family:'B Yekan'">
+								امکان مقایسه و خرید آنلاین از تمامی شرکت های بیمه
+							</h1>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="modal fade" id="CustomerChatModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h4 class="modal-title" style="font-family:'B Yekan';text-align:right">گفتگوها</h4>
+				</div>
+				<div class="modal-body" id="Customerbodymessages" style="margin-top:5px;">
+					@*<div class="container" >
+							<p>Hello. How are you today?</p>
+							<span class="time-right">11:00</span>
+						</div>
+
+						<div class="container darker">
+							<p>Hey! I'm fine. Thanks for asking!</p>
+							<span class="time-left">11:01</span>
+						</div>
+						<div class="container">
+							<p>Sweet! So, what do you wanna do today?</p>
+							<span class="time-right">11:02</span>
+						</div>
+						<div class="container darker">
+							<p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+							<span class="time-left">11:05</span>
+						</div>*@
+				</div>
+				<div class="modal-footer">
+					@using ((Html.BeginForm("AddMessage", "TicketInfo", FormMethod.Post, new { enctype = "multipart/form-data" })))
+					{
+						<div class="row" style="margin-right:5px">
+							<input id="txtmessage" name="txtmessage" style="width:60%;text-align:right;" placeholder="متن پیام را وارد کنید" required />
+							<button type="submit" class="btn btn-warning" style="font-family:'B Yekan';">ارسال پیام</button>
+							<input id="_CustomerId" name="CustomerId" hidden />
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container body-content" style="font-family:'B Yekan';width:100%">
+		@RenderBody()
+		<hr />
+		<footer >
+			<p>&copy; @DateTime.Now.Year - Design And Develop By Maryam Yazdani </p>
+		</footer>
+	</div >
+
+</body>
+
+</html>
+<button id="clickmodal" data-target="#CustomerChatModal" data-toggle="modal" style="display:none">clickmodal</button>
+<script>
+	function GetMessages() {
+		var txtmsg = "";
+
+		$.ajax({
+			type: "Get",
+			url: "/TicketInfo/GetMessages",
+			data: null,
+			dataType: "json",
+			contentType: false,
+			processData: false,
+			success: function (response) {
+				if (response.success) {
+					$('#clickmodal').click();
+					$.each(response.listitems, function () {
+
+						if (this.Type == 0) {
+							txtmsg += "<div class='container' style='margin-top:5px'><p style='text-align:right'>ادمین :" + this.txtmessage + "</p></div>";
+						}
+						else {
+							txtmsg += "<div class='container'  style='text-align:right;color:green;'><p style='text-align:right;color:green;'>شما : " + this.txtmessage + "</p></div>";
+						}
+					});
+					$("#Customerbodymessages").html(txtmsg);
+				}
+				else {
+				}
+			},
+			error: function (response) {
+
+			},
+		});
+	}
+
+</script>

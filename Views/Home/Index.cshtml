@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Bimeh.Models.Issuance>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="gtco-section">
+    <div class="gtco-container">
+        <div style="width:90%;height:500px;margin-right:50px">
+            <img src="~/Content/Slider/1.png" style="width:100%;height:600px;margin-left:10%;"/>
+        </div>
+
+        <div class="row" style="margin-top:110px">
+
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                    <h2 style="font-family:'B Yekan'">تکمیل اطلاعات</h2>
+                    <p>با کلیک کردن روی دکمه استعلام، سامانه، فهرستی از شرکت‌ بیمه‌گر و شرایط مربوطه را جهت انتخاب متناسب با نیاز بیمه‌ای شما، نمایش خواهد داد.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <a href="~/TicketInfo/Index/@item.Id" class="fh5co-card-item ">
+                        <figure>
+                            <div class="overlay"><i class="ti-plus"></i></div>
+                            @{
+
+
+                                <img src="~/Upload/Issuance/@item.ImageUrl" alt="Image" class="img-responsive">
+
+
+                            }
+                        </figure>
+                        <div class="fh5co-text">
+                            <p style="font-family:Tahoma,'B Yekan'">@item.ServiceProviderCenter.Insurance.Name</p>
+                            <p style="font-family:'B Yekan'"><span class="btn btn-primary">استعلام</span></p>
+                        </div>
+                    </a>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+</div>

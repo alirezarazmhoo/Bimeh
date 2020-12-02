@@ -1,0 +1,53 @@
+﻿@model Bimeh.Models.Issuance
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div>
+        <div style="width:90%;height:500px;margin-right:50px">
+            <img src="~/Content/Slider/3.png" style="width:100%;height:600px;margin-left:10%;" />
+        </div>
+    </div>
+
+
+
+    <div style="margin-top:50px">
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                @{
+                    <h3 style="font-family:Tahoma,'B Yekan';margin-top:100px;"><img src="~/Upload/Issuance/@Model.ImageUrl" style="width:60%;height:250px;" /></h3>
+                }
+                <div style="margin-top:60px;margin-left:auto;margin-right:auto">
+
+                    <label style="float:right">عنوان بیمه</label>
+                    <p>@Model.ServiceProviderCenter.Insurance.Name</p>
+
+                    <label style="float:right"> مدت اعتبار</label>
+                    <p>@Model.ValidiDuration سال</p>
+
+                    <label style="float:right">قیمت</label>
+                    <p>@Model.Price هزارتومان</p>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div style="align-items:center;">
+            <p style="margin-left:40%">
+                <a style="font-family:Tahoma,'B Yekan';margin-top:20px;" class="btn btn-danger" href="/Home/Index"> انصراف</a>
+                <a style="font-family:Tahoma,'B Yekan';margin-top:20px;" class="btn btn-success" href="/TicketInfo/SaveRequest/@Model.Id">تایید و ادامه</a>
+            </p>
+        </div>
+      
+
+    </div>
+
+
+
